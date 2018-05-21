@@ -37,11 +37,13 @@ func gofar(path string, fi os.FileInfo, err error) error {
 		//pass in the string you want to find as '--find STRNGTOFNDANDREPLACE'
                 //the third parameter in stringsReplace is what will replace the found string
 		var find string
-		flag.StringVar(&find, "find", "foo", "a command line flag")
+                var replace string
+		flag.StringVar(&find, "find", "foo", "what you want to find")
+		flag.StringVar(&replace, "replace", "bar", "what to replace it with")
 		flag.Parse()
 
 		//hardcoded replacement string (for now)
-		newContents := strings.Replace(string(read), find, "REPLACEME", -1)
+		newContents := strings.Replace(string(read), find, replace, -1)
 
 		fmt.Println(newContents)
 
